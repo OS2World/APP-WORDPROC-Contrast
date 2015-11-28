@@ -1,0 +1,26 @@
+********************** ESDTOOLS Use Only  *************************
+* :nick.CONTRAST   :sec.ESDTOOLS Use Only         :disk.ESDTOOLS
+* :title.PM graphical file comparison
+* :version.1.1     :date.91/02/17                     :support.
+* :oname.Barney Scott               :onode.           :ouser.BNHSCOTT
+* :aname.Barney Scott               :anode.           :auser.BNHSCOTT
+* :hw.286 & 386 processors          :sw.LOADRAM PACKAGE required
+* :ops.OS/2 1.2+                    :lang.C
+* :doc.CONTRAST.DOC
+* :kwd.file,compare,graphic
+* :abs.Compares two files and draws a PM diagram showing how blocks of
+* text in the two files match, highlighting changes and moves.  Beside
+* the diagram is the text of either file or a composite of the two,
+* coloured to match ther diagram.  Approx. download at 2400bps: 9 min.
+* :lic.LIMITED WARRANTY: ALL MATERIALS AND INFORMATION PROVIDED ARE PROVIDED
+* "AS-IS" WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+* IMPLIED, INCLUDING, BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+*
+*  1.2 version with help file
+*
+      CONTRAST FLSBIN
+*
+*  Use LOADRAM CONTRAST.FLS to break up.  Source is included.  See
+*  CONTRAST.DOC for instructions.
+

@@ -1,0 +1,288 @@
+/*********** contrast C Program Resource Script File (.RC) ***************/
+/*                                                                            */
+/*  The window resources used by an application are defined in a resource     */
+/*  script file .RC.  This file is compiled by the resource compiler to       */
+/*  produce an executable-format file.                                        */
+/*  The definitions are either statements which define resources or           */
+/*  references to other files containing resources.                           */
+/*                                                                            */
+/*  In this resource script file:                                             */
+/*  ------------------------------------------------------------------------  */
+/*  Statement:                       References:                */
+/*                                      #include "contrast.h"     */
+/*  ICON ID_CONTRAST contrast.ico                                   */
+/*                                                                            */
+/******************************************************************************/
+
+
+#define INCL_WINSYS
+#include <os2.h>
+#include "contrast.h"
+
+ICON ID_CONTRAST contrast.ico
+
+MENU ID_CONTRAST
+{
+    SUBMENU "~File",            MID_FILE
+    {
+        MENUITEM "~Open...\tAlt+O",   MID_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "E~xit\tF3",         MID_EXIT
+    }
+
+    SUBMENU "~View",            MID_VIEW
+    {
+        MENUITEM "File ~A\tAlt+A",    MID_FILEA
+        MENUITEM "File ~B\tAlt+B",    MID_FILEB
+        MENUITEM "~Composite\tAlt+C", MID_COMPOSITE,, MIA_CHECKED
+    }
+
+    SUBMENU "~Options",         MID_OPTIONS
+    {
+        MENUITEM "Ignore ~leading blanks\tAlt+L",   MID_IGNORE_LEADING_BLANKS
+        MENUITEM "Ignore ~trailing blanks\tAlt+T",  MID_IGNORE_TRAILING_BLANKS
+        MENUITEM "~Ignore all blanks\tAlt+I",       MID_IGNORE_ALL_BLANKS
+        MENUITEM SEPARATOR
+        MENUITEM "Interleave ~unmatched lines\tAlt+U", MID_INTERLEAVE_UNIQUE_LINES
+        MENUITEM SEPARATOR
+        MENUITEM "~Define colours used...\tAlt+D", MID_SET_COLOURS
+        MENUITEM "Set ~font used...\tAlt+F", MID_SET_FONT
+    }
+
+    SUBMENU "~Help",            MID_HELP
+    {
+        MENUITEM "~Help for help...\tShift+F10", MID_HELP_FOR_HELP
+        MENUITEM "~Extended help...\tF2",        SC_HELPEXTENDED, MIS_SYSCOMMAND
+        MENUITEM "~Keys help...\tF9",            SC_HELPKEYS,     MIS_SYSCOMMAND
+        MENUITEM "Help ~index...\tF11",          SC_HELPINDEX,    MIS_SYSCOMMAND
+        MENUITEM SEPARATOR
+        MENUITEM "~About...",                    MID_ABOUT
+    }
+}
+
+ACCELTABLE ID_CONTRAST
+{
+    VK_F2,  SC_HELPEXTENDED, SYSCOMMAND,        VIRTUALKEY
+    VK_F3,  MID_EXIT,                           VIRTUALKEY
+    VK_F9,  SC_HELPKEYS,     SYSCOMMAND,        VIRTUALKEY
+    VK_F10, MID_HELP_FOR_HELP,           SHIFT, VIRTUALKEY
+    VK_F11, SC_HELPINDEX,    SYSCOMMAND,        VIRTUALKEY
+    "a",    MID_FILEA,                   ALT
+    "b",    MID_FILEB,                   ALT
+    "c",    MID_COMPOSITE,               ALT
+    "o",    MID_OPEN,                    ALT
+    "l",    MID_IGNORE_LEADING_BLANKS,   ALT
+    "t",    MID_IGNORE_TRAILING_BLANKS,  ALT
+    "i",    MID_IGNORE_ALL_BLANKS,       ALT
+    "u",    MID_INTERLEAVE_UNIQUE_LINES, ALT
+    "d",    MID_SET_COLOURS,             ALT
+    "f",    MID_SET_FONT,                ALT
+}
+
+DLGTEMPLATE DID_OPEN
+{
+    DIALOG "Open Files", DID_OPEN, 16, 16, 360, 200,, FCF_TITLEBAR
+    {
+        LTEXT "File A:", -1, 8, 184, 32, 8
+        ENTRYFIELD "", DID_FILEA, 40, 184, 136, 8, ES_MARGIN
+        LTEXT "Directory:", -1, 8, 168, 40, 8
+        LTEXT "", DID_CUR_DIR_A, 48, 168, 128, 8
+        LTEXT "Files", -1, 8, 152, 80, 8
+        LISTBOX DID_FILES_A, 8, 32, 80, 120
+        LTEXT "Directories", -1, 96, 152, 80, 8
+        LISTBOX DID_DIRS_A, 96, 32, 80, 120
+        LTEXT "File B:", -1, 184, 184, 32, 8
+        ENTRYFIELD "", DID_FILEB, 216, 184, 136, 8, ES_MARGIN
+        LTEXT "Directory:", -1, 184, 168, 40, 8
+        LTEXT "", DID_CUR_DIR_B, 224, 168, 128, 8
+        LTEXT "Files", -1, 184, 152, 80, 8
+        LISTBOX DID_FILES_B, 184, 32, 80, 120
+        LTEXT "Directories", -1, 272, 152, 80, 8
+        LISTBOX DID_DIRS_B, 272, 32, 80, 120
+        PUSHBUTTON "Open", DID_OK, 18, 8, 96, 16, WS_GROUP
+        PUSHBUTTON "Cancel", DID_CANCEL, 132, 8, 96, 16
+        PUSHBUTTON "Help", DID_HELP, 246, 8, 96, 16
+    }
+}
+
+DLGTEMPLATE DID_SET_FONT
+{
+    DIALOG "Set Font Used", DID_SET_FONT, 16, 16, 164, 88,, FCF_TITLEBAR
+    {
+        LTEXT "Fonts available", -1, 8, 72, 104, 8
+        LISTBOX DID_FONTS_AVAILABLE, 8, 32, 104, 40
+        CHECKBOX "Italic", DID_ITALIC, 120, 60, 36, 12, WS_GROUP
+        CHECKBOX "Bold", DID_BOLD, 120, 48, 36, 12
+        DEFPUSHBUTTON "Set", DID_OK, 8, 8, 44, 16, WS_GROUP
+        PUSHBUTTON "Cancel", DID_CANCEL, 60, 8, 44, 16
+        PUSHBUTTON "Help", DID_HELP, 112, 8, 44, 16
+    }
+}
+
+DLGTEMPLATE DID_ABOUT
+{
+    DIALOG "", DID_ABOUT, 32, 32, 200, 80
+    {
+        CTEXT "Contrast", -1, 8, 72, 184, 8
+        CTEXT "Graphical File Comparison", -1, 8, 48, 184, 8
+        CTEXT "Author: Barney Scott, DAS, Hursley Park", -1, 8, 32, 184, 8
+        DEFPUSHBUTTON "OK", DID_OK, 80, 8, 40, 16, WS_GROUP
+    }
+}
+
+DLGTEMPLATE DID_SHOW_COLOURS
+{
+    DIALOG "CONTRAST Colours", DID_SHOW_COLOURS, 100, 100, 184, 120,, FCF_TITLEBAR
+    {
+        GROUPBOX "Default Colours", -1, 8, 32, 80, 80
+/* keep up to date with default colours in CONTRAST.C */
+        LTEXT "Blue", -1, 16, 96, 64, 8
+        LTEXT "Dark Pink", -1, 16, 88, 64, 8
+        LTEXT "Dark Green", -1, 16, 80, 64, 8
+        LTEXT "Dark Cyan", -1, 16, 72, 64, 8
+        LTEXT "Black", -1, 16, 64, 64, 8
+        LTEXT "Yellow", -1, 16, 56, 64, 8
+        LTEXT "Red", -1, 16, 48, 64, 8
+        LTEXT "White", -1, 16, 40, 64, 8
+        GROUPBOX "Current Settings", -1, 96, 32, 80, 80
+        LTEXT "", DID_ACTUAL_COLOURS, 104, 96, 64, 8
+        LTEXT "", DID_ACTUAL_COLOURS + 1, 104, 88, 64, 8
+        LTEXT "", DID_ACTUAL_COLOURS + 2, 104, 80, 64, 8
+        LTEXT "", DID_ACTUAL_COLOURS + 3, 104, 72, 64, 8
+        LTEXT "", DID_ACTUAL_COLOURS + 4, 104, 64, 64, 8
+        LTEXT "", DID_ACTUAL_COLOURS + 5, 104, 56, 64, 8
+        LTEXT "", DID_ACTUAL_COLOURS + 6, 104, 48, 64, 8
+        LTEXT "", DID_ACTUAL_COLOURS + 7, 104, 40, 64, 8
+        DEFPUSHBUTTON "OK", DID_OK, 72, 8, 40, 16, WS_GROUP
+    }
+}
+
+DLGTEMPLATE DID_COLOURS
+{
+    DIALOG "Colour defintion", DID_COLOURS, 32, 32, 200, 160,, FCF_TITLEBAR
+    {
+        LTEXT "Use for Colour", -1, 8, 144, 112, 8
+        LISTBOX  DID_COLOURS_USED, 8, 80, 112, 64
+        LTEXT "Colour Used", -1, 128, 144, 64, 8
+        LISTBOX  DID_POSSIBLE_COLOURS, 128, 80, 64, 64
+        LTEXT "Sample", DID_F1_BA, 8, 64, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 1, 72, 64, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 2, 136, 64, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 3, 8, 56, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 4, 72, 56, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 5, 136, 56, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 6, 8, 48, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 7, 72, 48, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 8, 136, 48, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 9, 8, 40, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 10, 72, 40, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 11, 136, 40, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 12, 8, 32, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        LTEXT "Sample", DID_F1_BA + 13, 72, 32, 56, 8
+        PRESPARAMS PP_FONTNAMESIZE, "8.Courier"
+        DEFPUSHBUTTON "Set", DID_OK, 8, 8, 40, 16, WS_GROUP
+        PUSHBUTTON "Cancel", DID_CANCEL, 56, 8, 40, 16
+        PUSHBUTTON "Defaults", DID_DEFAULT, 104, 8, 40, 16
+        PUSHBUTTON "Help", DID_HELP, 152, 8, 40, 16
+    }
+}
+
+
+STRINGTABLE
+{
+    SID_USED_BASE    , "matched foreground #1"
+    SID_USED_BASE + 1, "matched foreground #2"
+    SID_USED_BASE + 2, "matched foreground #3"
+    SID_USED_BASE + 3, "matched foreground #4"
+    SID_USED_BASE + 4, "unmatched foreground"
+    SID_USED_BASE + 5, "file A background"
+    SID_USED_BASE + 6, "file B background"
+    SID_USED_BASE + 7, "matched background"
+
+    SID_POSSIBLE_BASE     , "White"
+    SID_POSSIBLE_BASE + 1 , "Blue"
+    SID_POSSIBLE_BASE + 2 , "Red"
+    SID_POSSIBLE_BASE + 3 , "Pink"
+    SID_POSSIBLE_BASE + 4 , "Green"
+    SID_POSSIBLE_BASE + 5 , "Cyan"
+    SID_POSSIBLE_BASE + 6 , "Yellow"
+    SID_POSSIBLE_BASE + 7 , "Black"
+    SID_POSSIBLE_BASE + 8 , "Dark Grey"
+    SID_POSSIBLE_BASE + 9 , "Dark Blue"
+    SID_POSSIBLE_BASE + 10, "Dark Red"
+    SID_POSSIBLE_BASE + 11, "Dark Pink"
+    SID_POSSIBLE_BASE + 12, "Dark Green"
+    SID_POSSIBLE_BASE + 13, "Dark Cyan"
+    SID_POSSIBLE_BASE + 14, "Brown"
+    SID_POSSIBLE_BASE + 15, "Pale Grey"
+}
+
+
+HELPTABLE ID_CONTRAST
+{
+    HELPITEM ID_CONTRAST,  ID_CONTRAST,  HID_CONTRAST
+    HELPITEM DID_OPEN,   DID_OPEN,   HID_OPEN
+    HELPITEM DID_SET_FONT, DID_SET_FONT, HID_SET_FONT
+    HELPITEM DID_COLOURS, DID_COLOURS, HID_SET_COLOURS
+    HELPITEM DID_SHOW_COLOURS, DID_SHOW_COLOURS, HID_COLOURS
+    HELPITEM ID_PROBLEM, ID_PROBLEM, HID_PROBLEM
+}
+
+HELPSUBTABLE ID_CONTRAST
+{
+    HELPSUBITEM MID_FILE, HID_FILE
+    HELPSUBITEM MID_OPEN, HID_OPEN
+    HELPSUBITEM MID_EXIT, HID_FILE
+    HELPSUBITEM MID_VIEW, HID_VIEW
+    HELPSUBITEM MID_FILEA, HID_VIEW
+    HELPSUBITEM MID_FILEB, HID_VIEW
+    HELPSUBITEM MID_COMPOSITE, HID_VIEW
+    HELPSUBITEM MID_OPTIONS, HID_OPTIONS
+    HELPSUBITEM MID_IGNORE_LEADING_BLANKS, HID_OPTIONS
+    HELPSUBITEM MID_IGNORE_TRAILING_BLANKS, HID_OPTIONS
+    HELPSUBITEM MID_IGNORE_ALL_BLANKS, HID_OPTIONS
+    HELPSUBITEM MID_INTERLEAVE_UNIQUE_LINES, HID_OPTIONS
+    HELPSUBITEM MID_SET_COLOURS, HID_SET_COLOURS
+    HELPSUBITEM MID_SET_FONT, HID_SET_FONT
+    HELPSUBITEM MID_HELP, HID_HELP
+    HELPSUBITEM MID_HELP_FOR_HELP, HID_HELP
+    HELPSUBITEM SC_HELPEXTENDED, HID_HELP
+    HELPSUBITEM SC_HELPKEYS, HID_HELP
+    HELPSUBITEM SC_HELPINDEX, HID_HELP
+    HELPSUBITEM MID_ABOUT, HID_HELP
+}
+
+HELPSUBTABLE DID_OPEN
+{
+}
+
+HELPSUBTABLE DID_SET_FONT
+{
+}
+
+HELPSUBTABLE DID_COLOURS
+{
+}
+
+HELPSUBTABLE DID_SHOW_COLOURS
+{
+}
+
+HELPSUBTABLE ID_PROBLEM
+{
+}
+
+

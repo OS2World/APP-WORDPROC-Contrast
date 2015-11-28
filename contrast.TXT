@@ -1,0 +1,151 @@
+************ CONTRAST help ***************
+ 
+Usage: CONTRAST [file1] [file2]
+ 
+    If given no parameters (or just one), Contrast will bring up a dialog asking
+for 2 files. The files can be specified as for COMP, i.e. directories for both
+files default to the current one, and the second filename defaults to the first.
+If Contrast cannot open the files for some reason, it will bring up the dialog
+again. In this case, click Cancel if you want to exit from the program.
+ 
+    To exit Contrast, press F3 or select Exit from the File pulldown.
+ 
+    To scroll the displayed file, use either the cursor keys or the scroll bars.
+The mouse has no effect on either the text area, or the bar chart.
+ 
+What it does:
+ 
+    Contrast compares two files on disk and notes lines that are common to both.
+A bar chart is drawn, giving an overall view of which lines match, and the text
+of either file, or a composite file, is displayed. The default view is the
+composite file. Colours indicate which lines are common, and which unique.
+ 
+Bar Chart
+ 
+   The bar chart is a graphical representation of the two real files. Blocks of
+common lines are assigned a colour different from those around them, and drawn
+on the bars representing the files; a line links the matched blocks. The colours
+in the bar chart are used as the text colour for the file display; unmatched
+lines are written in black, and displayed in red or yellow on the chart. Black
+marks by the bar chart show where the current text display is in the files.
+ 
+Composite
+ 
+The composite file is made from the two files, using the common lines
+where possible.
+    Common lines have a white background.
+    Lines unique to File A are shown in black on yellow.
+    Lines unique to File B are shown in black on red.
+ 
+    Where a block of lines in File B has been moved from where it was in File A
+the program has to guess whether block 1 was moved up past block 2 or block 2
+moved down past block 1. It shows the larger block as common and the other as
+moved in each file. The text shown as moved is drawn in a dark colour (not
+black) on yellow or red.
+The bar chart shows the connections.
+ 
+Colours
+ 
+Text Background
+  Yellow
+    Lines unique to File A (or moved in File A)
+    Used in bar chart and as text background.
+  Red
+    Lines unique to File B (or moved in File B)
+    Used in bar chart and as text background.
+  White
+    Lines common to File A and File B
+    Text background only.
+See Composite for how moved blocks are coloured.
+ 
+Text Foreground
+  Dark blue
+  Dark pink
+  Dark green
+  Dark cyan
+    Text that has been matched in both files. The same colour is used for the
+    identical text in each file; the choice of colour is such that surrounding
+    blocks of matched lines use different ones. The same colour is used in the
+    bar chart to show the lines.
+  Black
+    Unmatched text.
+ 
+File Selection Dialog
+ 
+    The File Selection dialog asks you to enter the names of the two
+files to be contrasted. The default drive, and default paths for any drive
+used, are assumed if none are specified. Parent directories may be refered to
+as '..'. File B can be given just as a directory. In this case the file name
+and extension are taken as being the same as File A.
+ 
+Problem Message Box
+ 
+    The Problem message box informs the user of a problem in the
+program. This may or may not be fatal. The user is required to acknowledge the
+message; the program will take appropriate action.
+ 
+File Menu
+ 
+The File menu contains the following items:
+  File A
+  File B
+    Displays the text of the appropriate file.
+  Composite
+    Displays the composite file.
+  Open
+    Allows new files for contrasting to be specified.
+  Exit
+    Closes the Contrast program.
+ 
+Help Menu (OS/2 1.2 version only)
+ 
+The Help menu contains the following items:
+  Help for help
+    Explains the use of the help functions.
+  Extended help
+    Displays general help on the Contrast program.
+  Keys help
+    Displays help on the keys that can be used in the Contrast program.
+  Help index
+    Displays a list of selectable help topics.
+  About
+    Displays useless information about the application.
+ 
+Keys for Contrast
+ 
+The Contrast program assigns the following special functions to keys:
+  Alt+A
+  Alt+B
+    Display file A or B
+  Alt+C
+    Display the composite file
+  Alt+L
+  Alt+T
+    Ignore leading or trailing blanks for line comparison. Use the Options
+    menu to see the current status.
+  F3
+    Exit the Contrast program.
+  Arrow keys
+  Page Up
+  Page Down
+    Scroll the displayed file.
+ 
+Options Menu
+ 
+    The Options menu contains the following items:
+  Ignore leading blanks
+    Re-contrasts the files, with white space at the beginning of lines ignored.
+    Any formatting of programs will thus be irrelevant.
+  Ignore trailing blanks
+    Ignores white space at the end of lines. Some editors can be inconsistent
+    about leaving this in files.
+ 
+Font Menu
+ 
+    The Font menu allows up to three different point sizes of text
+to be used to display the file, if present on the system. All of these are
+Courier fonts, which are fixed-pitch, i.e. all characters are of equal width.
+If no Courier font is available, the program will use the System Proportional
+font, but text alignment will suffer as a result. Since font use is different
+for OS/2 1.1, it always seems to come up with the system proportional font.
+
